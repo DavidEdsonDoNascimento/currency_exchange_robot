@@ -1,0 +1,11 @@
+{
+  "name": "currency_exchange_robot",
+  "version": "1.0.0",
+  "description": "Currency exchange application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Edson do Nascimento",
+  "license": "ISC"
+}
