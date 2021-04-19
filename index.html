@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Cambio monetário</h1>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <label for="dolar">Dolar Hoje:</label>
+                <input type="text" class="form-control" id="dolar-today" readonly>
+            </div>
+
+            <div class="col-sm-4">
+                <label for="euro">Euro Hoje:</label>
+                <input type="text" class="form-control" id="euro-today" readonly>
+            </div>
+
+            <div class="col-sm-4">
+                <label for="libra">Libra Hoje:</label>
+                <input type="text" class="form-control" id="libra-today" readonly>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            ajaxCurrencyExchangeRobot()
+        })
+        
+        const ajaxCurrencyExchangeRobot = () =>
+        {
+            $.ajax({
+                url: `http://localhost:3200/`,
+                method:'GET',
+                dataType: 'json',
+                success: function(data){
+                    $('#dolar-today').val(data.dolar_today)
+                    $('#euro-today').val(data.euro_today)
+                    $('#libra-today').val(data.libra_today)
+                },
+                error: function(er)
+                {
+                    console.log(er)
+                }
+            })
+        }
+    </script>
+</body>
+</html>
