@@ -33,19 +33,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
-            ajaxCurrencyExchangeRobot()
+            ajaxCurrencyExchangeRobot($('#dolar-today'), 'dolar')
+            ajaxCurrencyExchangeRobot($('#euro-today'), 'euro')
+            ajaxCurrencyExchangeRobot($('#libra-today'), 'libra')
+
         })
         
-        const ajaxCurrencyExchangeRobot = () =>
+        const ajaxCurrencyExchangeRobot = (input, coin) =>
         {
             $.ajax({
                 url: `http://localhost:3200/`,
                 method:'GET',
                 dataType: 'json',
+                data: { coin : coin },
+                contentType: 'application/json',
+                async: false,
                 success: function(data){
-                    $('#dolar-today').val(data.dolar_today)
-                    $('#euro-today').val(data.euro_today)
-                    $('#libra-today').val(data.libra_today)
+                    input.val(data.currentValue)
                 },
                 error: function(er)
                 {
